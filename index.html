@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+</head>
+<body>
+    <section>
+      <h2>Leap Year Check</h2>
+      <input type="text" id="Input" placeholder="Enter a year">
+      <button onclick="check()">Calculate</button>
+      <p id="result"></p>
+  
+      <script>
+          function check() {
+              const year = document.getElementById("Input").value;
+              if (isNaN(year) || year.trim() === "" || year < 0) {
+                  alert("Please enter a valid Number");
+                  document.getElementById("result").innerHTML = ""; 
+                  return;
+              }
+              const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
+              document.getElementById("result").innerHTML = year + " is " + (isLeapYear ? "" : "not ") + "a leap year.";
+          }
+      </script>
+    </section><br><br>
+
+    <section>
+      <h1>Check if 1st January is a Sunday between 2014 and 2050</h1>
+      <button onclick="checkSundays()">Check</button>
+      <p id="result2"></p>
+  
+      <script>
+          function checkSundays() {
+              const resultDiv = document.getElementById("result2");
+              resultDiv.innerHTML = ''; 
+              for (let year = 2014; year <= 2050; year++) {
+                  const date = new Date(year, 0, 1);
+                  if (date.getDay() === 0) {
+                      resultDiv.innerHTML += "1st January " + year + " is a Sunday.<br>";
+                  }
+              }
+          }
+      </script>
+    </section>
+
+    <section>
+      <h1>Odd or Even Numbers (0-15)</h1>
+      <button onclick="checkOddEven()">Check</button>
+      <p id="checkResult"></p>
+      <script>
+          function checkOddEven() {
+              const resultDiv = document.getElementById("checkResult");
+              resultDiv.innerHTML = '';
+              for (let i = 0; i <= 15; i++) {
+                  if (i % 2 === 0) {
+                      resultDiv.innerHTML += i + " is even.<br>";
+                  } else {
+                      resultDiv.innerHTML += i + " is odd.<br>";
+                  }
+              }
+          }
+      </script>
+    </section>
+
+    <section>
+      <h2>Palindrome Checker</h2>
+      <input type="text" id="InputPalindrome" placeholder="Enter a word or phrase">
+      <button onclick="checkPalindrome()">Check</button>
+      <p id="palindromeResult"></p>
+      <script>
+          function checkPalindrome() {
+              const input = document.getElementById("InputPalindrome").value;
+              const cleanInput = input.replace(/[^a-zA-Z0-9]/g, '').toLowerCase(); 
+              const reversedInput = cleanInput.split('').reverse().join('');
+              if (cleanInput === reversedInput) {
+                  document.getElementById("palindromeResult").innerHTML = `"${input}" is a palindrome.`;
+              } else {
+                  document.getElementById("palindromeResult").innerHTML = `"${input}" is not a palindrome.`;
+              }
+          }
+      </script>
+    </section>
+
+</body>
+</html>
